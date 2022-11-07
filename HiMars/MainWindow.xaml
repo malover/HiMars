@@ -1,0 +1,70 @@
+﻿<Window x:Class="PL.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HiMars"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="920"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen"
+        xmlns:viewModel="clr-namespace:PL.MVVM.ViewModel">
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+    <Border Background="#272537" CornerRadius="20">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    Width="225"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       Grid.Column="0"
+                       Text="HiMars Warehouse"
+                       FontSize="22"
+                       Foreground="White"
+                       Margin="20, 0, 0, 0"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"/>
+
+
+            <StackPanel Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="5">
+
+                <RadioButton Content="Categories" 
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding CategoriesViewCommand}"
+                             IsChecked="True"/>
+                <RadioButton Content="Goods" 
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding GoodsViewCommand}"/>
+                <RadioButton Content="Vendors" 
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding VendorsViewCommand}"/>
+            </StackPanel>
+
+            <ContentControl Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="5, 5, 10, 10"
+                            Content="{Binding CurrentView}"/>
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,145 @@
+﻿<UserControl x:Class="PL.MVVM.View.DetailsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PL.MVVM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="800">
+    <Grid Background="#222222">
+        <StackPanel DataContext="{Binding Category}">
+            <Grid Height="200">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <Border Grid.Column="0" 
+                            BorderBrush="#272537" 
+                            BorderThickness="0, 0, 4, 0"/>
+                    <StackPanel>
+                        <TextBlock 
+                           Foreground="White"
+                           FontSize="30"
+                           Text="{Binding CategoryName}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                            TextWrapping="Wrap"
+                           Margin="5"/>
+
+                        <TextBlock
+                           Foreground="Gray"
+                           FontSize="18"
+                           Text="{Binding ShortDescription}"
+                           TextWrapping="Wrap"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Margin="5"/>
+                    </StackPanel>
+                </Grid>
+                <TextBlock Grid.Column="1"
+                           Foreground="Gray"
+                           FontSize="18"
+                           Text="{Binding LongDescription}"
+                           TextWrapping="Wrap"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"
+                           Margin="10, 25, 5, 5"/>
+            </Grid>
+            <Grid Height="45">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Border BorderBrush="#272537" 
+                            BorderThickness="0, 4, 0, 4"
+                        Grid.Column="0">
+                    <TextBlock
+                Text="All goods in this category: "
+                FontSize="20"
+                Foreground="White"
+                    Margin="5"/>
+                </Border>
+            </Grid>
+        </StackPanel>
+        <DockPanel Margin="0,245,0,45">
+            <ListView Background="#222222"
+                  ScrollViewer.CanContentScroll="False"
+                      SelectedItem="{Binding SelectedGood}"
+                  ItemsSource="{Binding Goods}"
+                  Style="{StaticResource GoodsList_categoryDetails_Style}"/>
+        </DockPanel>
+        <Grid Height="40" VerticalAlignment="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0"
+                 Style="{StaticResource TransparentStyle}"
+                 HorizontalAlignment="Center"
+                 Command="{Binding Delete}"
+                 Width="100">
+                <Button.Content>
+                    <TextBlock
+                    Text="Delete"
+                    Foreground="Gray"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="16"/>
+                </Button.Content>
+            </Button>
+
+            <Button 
+                 Grid.Column="1"
+                 Style="{StaticResource TransparentStyle}"
+                 HorizontalAlignment="Center"
+                 Command="{Binding Edit}"
+                 Width="100">
+                <Button.Content>
+                    <TextBlock
+                    Text="Edit"
+                    Foreground="Gray"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="16"/>
+                </Button.Content>
+            </Button>
+
+            <Button 
+                 Grid.Column="4"
+                 Style="{StaticResource TransparentStyle}"
+                 HorizontalAlignment="Right"
+                 Command="{Binding AddGood}"
+                 Width="100">
+                <Button.Content>
+                    <TextBlock
+                    Text="Add good"
+                    Foreground="Gray"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="16"/>
+                </Button.Content>
+            </Button>
+            
+            <Button 
+                 Grid.Column="3"
+                 Style="{StaticResource TransparentStyle}"
+                 HorizontalAlignment="Right"
+                 Command="{Binding DeleteGood}"
+                 Width="100">
+                <Button.Content>
+                    <TextBlock
+                    Text="Delete good"
+                    Foreground="Gray"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="16"/>
+                </Button.Content>
+            </Button>
+        </Grid>
+    </Grid>
+</UserControl>

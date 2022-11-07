@@ -1,0 +1,175 @@
+﻿<UserControl x:Class="PL.MVVM.View.CreateGoodView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PL.MVVM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="800">
+    <Grid Background="#222222">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0"
+                    Grid.Column="1">
+            <TextBlock Text="Type in good name."
+                       Foreground="Gray"
+                       FontWeight="Medium"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Margin="5"
+                       FontSize="16"/>
+            <TextBox Background="#353340"  
+                     TextWrapping="Wrap"
+                     Foreground="Gray"
+                     BorderThickness="0"
+                     Padding="10"
+                     Margin="5"
+                     Text="{Binding GoodName}">
+            </TextBox>
+            <TextBlock Text="{Binding ErrorMessage}"
+                       Foreground="Red"
+                       FontWeight="Medium"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Margin="10"
+                       FontSize="10"
+                       TextWrapping="Wrap"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1"
+                    Grid.Column="1">
+            <TextBlock Text="Type in short description."
+                       Foreground="Gray"
+                       FontWeight="Medium"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Margin="5"
+                       FontSize="16"/>
+            <TextBox Background="#353340"    
+                     TextWrapping="Wrap"
+                     Foreground="Gray"
+                     Padding="10"
+                     BorderThickness="0"
+                     Margin="5"
+                     Text="{Binding GoodShortDescription}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2"
+                    Grid.Column="1">
+            <TextBlock Text="Type in full description."
+                       Foreground="Gray"
+                       FontWeight="Medium"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Margin="5"
+                       FontSize="16"/>
+            <TextBox Background="#353340"  
+                     Foreground="Gray"
+                     Padding="10"
+                     TextWrapping="Wrap"
+                     BorderThickness="0"
+                     Margin="5"
+                     Text="{Binding GoodLongDescription}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3"
+                    Grid.Column="1">
+            <TextBlock Text="Type in quantity."
+                       Foreground="Gray"
+                       FontWeight="Medium"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Margin="5"
+                       FontSize="16"/>
+            <TextBox Background="#353340"  
+                     Foreground="Gray"
+                     Padding="10"
+                     TextWrapping="Wrap"
+                     BorderThickness="0"
+                     Margin="5"
+                     Text="{Binding Quantity}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4"
+                    Grid.Column="1">
+            <TextBlock Text="Type in price."
+                       Foreground="Gray"
+                       FontWeight="Medium"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Margin="5"
+                       FontSize="16"/>
+            <TextBox Background="#353340"  
+                     Foreground="Gray"
+                     Padding="10"
+                     TextWrapping="Wrap"
+                     BorderThickness="0"
+                     Margin="5"
+                     Text="{Binding Price}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="5"
+                    Grid.Column="1">
+            <TextBlock Text="Type in brand."
+                       Foreground="Gray"
+                       FontWeight="Medium"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Margin="5"
+                       FontSize="16"/>
+            <TextBox Background="#353340"  
+                     Foreground="Gray"
+                     Padding="10"
+                     TextWrapping="Wrap"
+                     BorderThickness="0"
+                     Margin="5"
+                     Text="{Binding Brand}"/>
+        </StackPanel>
+
+        <Button Grid.Row="0"
+                Grid.Column="2"
+                Style="{StaticResource TransparentStyle}"
+                Margin="10, 38, 10, 12"
+                HorizontalAlignment="Center"
+                Command="{Binding Ok}">
+            <Button.Content>
+                <TextBlock
+                    Text="Ok"
+                    Padding="25, 10, 25, 10"
+                    Foreground="Gray"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="16"/>
+            </Button.Content>
+        </Button>
+
+        <Button Grid.Row="1"
+                Grid.Column="2"
+                Style="{StaticResource TransparentStyle}"
+                Margin="10, 38, 10, 12"
+                HorizontalAlignment="Center"
+                Command="{Binding Cancel}">
+            <Button.Content>
+                <TextBlock
+                    Text="Cancel"
+                    Padding="25, 10, 25, 10"
+                    Foreground="Gray"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="16"/>
+            </Button.Content>
+        </Button>
+    </Grid>
+</UserControl>

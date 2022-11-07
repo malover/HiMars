@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="PL.MVVM.View.CategoriesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PL.MVVM.View"
+             xmlns:viewModel="clr-namespace:PL.MVVM.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="800">
+    <Grid Background="#222222">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0"
+            Text="All categories presented in the warehouse"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Left"
+                   Foreground="White"
+                   FontSize="22"
+                   Margin="20, 0, 10, 10"/>
+        <Button Grid.Row="0"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Right"
+                Margin="0, 0, 20, 0"
+                Background="#272537"
+                BorderThickness="0"
+                Height="30" Width="100"
+                Style="{StaticResource TransparentStyle}"
+                Command="{Binding CreateNew}">
+            <Button.Content>
+                <TextBlock
+                    Text="Create new"
+                    Foreground="Gray"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="16"></TextBlock>
+            </Button.Content>
+        </Button>
+        <DockPanel Grid.Row="1"
+            Margin="10">
+            <ListView Name="ListViewCategories" Background="#222222"
+                  SelectedItem="{Binding SelectedCategory}"
+                  ScrollViewer.CanContentScroll="False"
+                  ItemsSource="{Binding Categories}"
+                  Style="{StaticResource ListStyle}">
+            </ListView>
+        </DockPanel>
+    </Grid>
+</UserControl>
