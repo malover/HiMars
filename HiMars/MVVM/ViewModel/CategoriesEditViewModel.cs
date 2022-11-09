@@ -53,9 +53,10 @@ namespace PL.MVVM.ViewModel
 
             Save = new RelayCommand(o =>
             {
-                var result = _logicController.EditCategory(CategoryName, CategoryShortDescription, CategoryLongDescription, _category);
+                var result = _logicController.CheckDataValid(CategoryName, CategoryShortDescription, CategoryLongDescription);               
                 if (result == String.Empty)
                 {
+                    _logicController.EditCategory(CategoryName, CategoryShortDescription, CategoryLongDescription, _category);
                     _mainViewModel.CurrentView = new CategoryDetailsViewModel(new CategoryDTO_short { CategoryName = CategoryName, ShortDescription = CategoryShortDescription}, _mainViewModel);
                 }
                 else

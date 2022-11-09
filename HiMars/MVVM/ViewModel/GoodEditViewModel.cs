@@ -90,9 +90,10 @@ namespace PL.MVVM.ViewModel
         {
             Save = new RelayCommand(o =>
             {
-                var result = SaveChanges();
+                var result = _goodLogicController.CheckDateValid(GoodName, GoodShortDescription, GoodLongDescription, Quantity, Price, Brand, CategoryName);
                 if (result == string.Empty)
                 {
+                    _goodLogicController.EditGood(GoodName, GoodShortDescription, GoodLongDescription, Quantity, Price, Brand, SelectedCategory, _good);
                     _mainViewModel.CurrentView = new GoodsViewModel(_mainViewModel);
                 }
                 else
@@ -134,11 +135,6 @@ namespace PL.MVVM.ViewModel
                 temp.Add(category.CategoryName);
             }
             AvailableCategories = temp;
-        }
-
-        private string SaveChanges()
-        {
-            return _goodLogicController.EditGood(GoodName, GoodShortDescription, GoodLongDescription, Quantity, Price, Brand, SelectedCategory, _good);
         }
     }
 }

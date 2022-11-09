@@ -23,7 +23,7 @@ namespace DAL.Controllers
 
         public List<Good> GetGoodsForCategory(string categoryName)
         {
-            var category = _unitOfWork.CategoryRepository.GetAll().Single(x => x.CategoryName == categoryName);
+            var category = _unitOfWork.CategoryRepository.GetAll().SingleOrDefault(x => x.CategoryName == categoryName);
 
             var goods = _unitOfWork.GoodRepository.GetAll().Where(x => x.CategoryId == category.CategoryId).ToList();
             return goods;

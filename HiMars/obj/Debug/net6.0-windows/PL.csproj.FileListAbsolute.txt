@@ -28,12 +28,6 @@ D:\VisualStudioRepository\HiMars\HiMars\obj\Debug\net6.0-windows\MVVM\View\Goods
 D:\VisualStudioRepository\HiMars\HiMars\obj\Debug\net6.0-windows\MVVM\View\VendorsView.g.cs
 D:\VisualStudioRepository\HiMars\HiMars\obj\Debug\net6.0-windows\MVVM\View\GoodsView.baml
 D:\VisualStudioRepository\HiMars\HiMars\obj\Debug\net6.0-windows\MVVM\View\VendorsView.baml
-D:\VisualStudioRepository\HiMars\HiMars\bin\Debug\net6.0-windows\BLL.deps.json
-D:\VisualStudioRepository\HiMars\HiMars\bin\Debug\net6.0-windows\BLL.runtimeconfig.json
-D:\VisualStudioRepository\HiMars\HiMars\bin\Debug\net6.0-windows\DAL.deps.json
-D:\VisualStudioRepository\HiMars\HiMars\bin\Debug\net6.0-windows\DAL.runtimeconfig.json
-D:\VisualStudioRepository\HiMars\HiMars\bin\Debug\net6.0-windows\DAL.exe
-D:\VisualStudioRepository\HiMars\HiMars\bin\Debug\net6.0-windows\BLL.exe
 D:\VisualStudioRepository\HiMars\HiMars\bin\Debug\net6.0-windows\AutoMapper.dll
 D:\VisualStudioRepository\HiMars\HiMars\bin\Debug\net6.0-windows\Microsoft.Data.SqlClient.dll
 D:\VisualStudioRepository\HiMars\HiMars\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.dll

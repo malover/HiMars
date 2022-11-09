@@ -86,14 +86,6 @@
                      Margin="5"
                      Text="{Binding GoodName}">
             </TextBox>
-            <TextBlock Text="{Binding ErrorMessage}"
-                       Foreground="Red"
-                       FontWeight="Medium"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       Margin="10"
-                       FontSize="16"
-                       TextWrapping="Wrap"/>
         </StackPanel>
 
         <StackPanel Grid.Row="1"
@@ -236,5 +228,18 @@
                     FontSize="16"/>
             </Button.Content>
         </Button>
+        
+        <TextBlock     Grid.Row="2"
+                       Grid.Column="2"
+                       Grid.RowSpan = "5"
+                       Text="{Binding ErrorMessage}"
+                       Foreground="Red"
+                       FontWeight="Medium"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Margin="10"
+                       FontSize="12"
+                       TextWrapping="Wrap"/>
+        
     </Grid>
 </UserControl>

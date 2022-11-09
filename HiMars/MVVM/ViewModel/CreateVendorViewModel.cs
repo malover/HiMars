@@ -47,8 +47,18 @@ namespace PL.MVVM.ViewModel
 
             Ok = new RelayCommand(o =>
             {
-                _logicController.CreateNewVendor(FirstName, LastName);
-                _mainViewModel.CurrentView = new VendorsViewModel(_mainViewModel);
+                var result = _logicController.CheckDataValid(FirstName, LastName);
+
+                if (result == String.Empty)
+                {
+                    _logicController.CreateNewVendor(FirstName, LastName);
+                    _mainViewModel.CurrentView = new VendorsViewModel(_mainViewModel);
+                }
+                else
+                {
+                    ErrorMessage = result;
+                    return;
+                }
             });
             Cancel = new RelayCommand(o =>
             {

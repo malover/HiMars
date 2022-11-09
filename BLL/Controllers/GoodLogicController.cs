@@ -71,7 +71,7 @@ namespace BLL.Controllers
             _goodController.DeleteGood(good.GoodId);
         }
 
-        public string CreateNewGood(string goodName, string shortDescription, string longDescription, int quantity, decimal price, string brand, string categoryName, CategoryDTO_short categoryDTO)
+        public void CreateNewGood(string goodName, string shortDescription, string longDescription, int quantity, decimal price, string brand, string categoryName, CategoryDTO_short categoryDTO)
         {
             var goodDTO = new GoodDTO_full { CategoryName = categoryName, ShortDescription = shortDescription, LongDescription = longDescription, GoodName = goodName, Quantity = quantity, Price = price, Brand = brand };
 
@@ -80,18 +80,10 @@ namespace BLL.Controllers
             var categoryDB = _categoryController.GetCategories().SingleOrDefault(x => x.CategoryName == categoryDTO.CategoryName);
             good.CategoryId = categoryDB.CategoryId;
 
-            if (_goodController.GetGoods().Where(x => x.GoodName == goodDTO.GoodName).Any())
-            {
-                return "This good already exist.";
-            }
-            else
-            {
-                _goodController.AddGood(good);
-                return string.Empty;
-            }
+            _goodController.AddGood(good);
         }
 
-        public string EditGood(string goodName, string shortDescription, string longDescription, int quantity, decimal price, string brand, string categoryName, GoodDTO_full original)
+        public void EditGood(string goodName, string shortDescription, string longDescription, int quantity, decimal price, string brand, string categoryName, GoodDTO_full original)
         {
             var goodDB = _goodController.GetGoods().SingleOrDefault(x => x.GoodName == original.GoodName);
             goodDB.GoodName = goodName;
@@ -105,15 +97,41 @@ namespace BLL.Controllers
 
             goodDB.CategoryId = categoryDB.CategoryId;
 
-            if (_goodController.GetGoods().Where(x => x.GoodName == goodDB.GoodName).Count() > 1)
+            _goodController.EditGood(goodDB);
+        }
+
+        public string CheckDateValid(string goodName, string shortDescription, string longDescription, int quantity, decimal price, string brand, string categoryName)
+        {
+            string errorMessage = string.Empty;
+            if (!goodName.All(c => Char.IsLetterOrDigit(c) || c == '.' || Char.IsWhiteSpace(c)))
             {
-                return "This good already exist.";
+                errorMessage += "*Good name: only letters and digits available; \n";
             }
-            else
+            if (!shortDescription.All(c => Char.IsLetterOrDigit(c) || c == '.' || Char.IsWhiteSpace(c)))
             {
-                _goodController.EditGood(goodDB);
-                return string.Empty;
+                errorMessage += "*Good short description: only letters and digits available; \n";
             }
+            if (!longDescription.All(c => Char.IsLetterOrDigit(c) || c == '.' || Char.IsWhiteSpace(c)))
+            {
+                errorMessage += "*Good long description: only letters and digits available; \n";
+            }
+            if (quantity < 0 || quantity > 9999)
+            {
+                errorMessage += "*Quantity: put the number in range from 0 to 9999; \n";
+            }
+            if (price < 0 || price > 999999)
+            {
+                errorMessage += "*Price: put the number in range from 0 to 999999; \n";
+            }
+            if (!brand.All(c => Char.IsLetterOrDigit(c) || c == '.' || Char.IsWhiteSpace(c)))
+            {
+                errorMessage += "*Good brand: only letters and digits available; \n";
+            }
+            if (_goodController.GetGoodsForCategory(categoryName).Where(x => x.GoodName == goodName).Count() > 0)
+            {
+                errorMessage += $"*Good name: good with this name already exist in category: {categoryName}; \n";
+            }
+            return errorMessage;
         }
 
         public ObservableCollection<GoodDTO_short> SortByPrice(ObservableCollection<GoodDTO_short> list, int counter)

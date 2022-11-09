@@ -32,7 +32,7 @@ namespace PL.MVVM.ViewModel
 
             Delete = new RelayCommand(o =>
             {
-                _logicController.DeleteVendorByName(_vendor.FirstName);
+                _logicController.DeleteVendorByName(_vendor.FirstName, _vendor.LastName);
                 _mainViewModel.CurrentView = new VendorsViewModel(_mainViewModel);
             });
 

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace BLL.Controllers
@@ -38,9 +39,9 @@ namespace BLL.Controllers
             return vendorsDTO;
         }
 
-        public void DeleteVendorByName(string name)
+        public void DeleteVendorByName(string name, string lname)
         {
-            var vendor = _vendorController.GetVendors().SingleOrDefault(x => x.FirstName == name);
+            var vendor = _vendorController.GetVendors().SingleOrDefault(x => x.FirstName == name && x.LastName == lname);
 
             _vendorController.DeleteVendor(vendor.VendorId);
         }
@@ -54,14 +55,33 @@ namespace BLL.Controllers
             _vendorController.AddVendor(vendor);
         }
 
-        public string EditVendor(string firstName, string lastName, VendorDTO original)
+        public void EditVendor(string firstName, string lastName, VendorDTO original)
         {
             var vendorDB = _vendorController.GetVendors().SingleOrDefault(x => x.FirstName == original.FirstName);
             vendorDB.FirstName = firstName;
             vendorDB.LastName = lastName;
 
             _vendorController.EditVendor(vendorDB);
-            return string.Empty;
+        }
+
+        public string CheckDataValid(string firstName, string lastName)
+        {
+            Regex regex = new Regex(@"^[A-Z][a-zA-Z]*$");
+            string errorMessage = string.Empty;
+
+            if (!regex.IsMatch(firstName))
+            {
+                errorMessage += "*Fist name can only contain letters, start with capital letter, and contain one word; \n";
+            }
+            if (!regex.IsMatch(lastName))
+            {
+                errorMessage += "*Last name can only contain letters, start with capital letter, and contain one word; \n";
+            }
+            if (_vendorController.GetVendors().Where(x => x.FirstName == firstName && x.LastName == lastName).Count() > 0)
+            {
+                errorMessage += "*This vendor is already presented in the list.; \n";
+            }
+            return errorMessage;
         }
 
         public ObservableCollection<VendorDTO> SortByFirstName(ObservableCollection<VendorDTO> list, int counter)

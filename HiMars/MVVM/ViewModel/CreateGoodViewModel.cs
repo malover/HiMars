@@ -18,7 +18,6 @@ namespace PL.MVVM.ViewModel
         private string _goodLongDescription;
         private string _categoryName;
         private int _quantity;
-        private CategoryDTO_short _category;
         private readonly GoodLogicController _goodLogicController;
         private string _errorMessage;
         private decimal _price;
@@ -76,12 +75,15 @@ namespace PL.MVVM.ViewModel
 
         public CreateGoodViewModel(MainViewModel mainViewModel, CategoryDTO_short category)
         {
+            _categoryName = category.CategoryName;
+
             Ok = new RelayCommand(o =>
             {
-                var result = CreateNew();
+                var result = _goodLogicController.CheckDateValid(GoodName, GoodShortDescription, GoodLongDescription, Quantity, Price, Brand, CategoryName);
                 if (result == String.Empty)
                 {
-                    _mainViewModel.CurrentView = new CategoryDetailsViewModel(_category, _mainViewModel);
+                    _goodLogicController.CreateNewGood(GoodName, GoodShortDescription, GoodLongDescription, Quantity, Price, Brand, CategoryName, category);
+                    _mainViewModel.CurrentView = new CategoryDetailsViewModel(category, _mainViewModel);
                 }
                 else
                 {
@@ -91,19 +93,13 @@ namespace PL.MVVM.ViewModel
             });
             Cancel = new RelayCommand(o =>
             {
-                _mainViewModel.CurrentView = new CategoryDetailsViewModel(_category, _mainViewModel);
+                _mainViewModel.CurrentView = new CategoryDetailsViewModel(category, _mainViewModel);
             });
 
             _mainViewModel = mainViewModel;
             _goodLogicController = new GoodLogicController();
-            _category = category;
 
             _errorMessage = string.Empty;
-        }
-        
-        private string CreateNew()
-        {
-            return _goodLogicController.CreateNewGood(GoodName, GoodShortDescription, GoodLongDescription, Quantity, Price, Brand,CategoryName, _category);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BLL.Controllers;
 using BLL.DTO;
+using DAL.Models;
 using PL.Core;
 using System;
 using System.Collections.Generic;
@@ -51,10 +52,11 @@ namespace PL.MVVM.ViewModel
 
             Ok = new RelayCommand(o =>
             {
-                var result = CreateNew();
-                if (result == string.Empty)
+                var result = _categoryLogicContoller.CheckDataValid(CategoryName, CategoryShortDescription, CategoryLongDescription);
+                if (result == String.Empty)
                 {
-                    _mainViewModel.CurrentView = new CategoriesViewModel(mainViewModel);
+                    _categoryLogicContoller.CreateNewCategory(CategoryName, CategoryShortDescription, CategoryLongDescription);
+                    _mainViewModel.CurrentView = new CategoriesViewModel(_mainViewModel);
                 }
                 else
                 {
@@ -67,12 +69,6 @@ namespace PL.MVVM.ViewModel
             {
                 _mainViewModel.CurrentView = new CategoriesViewModel(mainViewModel);
             });
-        }
-
-        private string CreateNew()
-        {
-            var result = _categoryLogicContoller.CreateNewCategory(CategoryName, CategoryShortDescription, CategoryLongDescription);
-            return result;
         }
     }
 }
